@@ -1,0 +1,101 @@
+import pygame
+import sys
+
+# Constants
+SCREEN_WIDTH = 224  # 224 pixels wide
+SCREEN_HEIGHT = 288  # 288 pixels tall
+GRID_SIZE = 16  # Grid size for Pac-Man and ghosts
+PACMAN_SPEED = 2  # Pac-Man movement speed
+GHOST_SPEED = 1  # Ghosts movement speed
+BLACK = (0, 0, 0)
+YELLOW = (255, 255, 0)
+
+# Initialize Pygame
+pygame.init()
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption('Pac-Man')
+
+# Load sprites
+pacman_image = pygame.image.load('pacman.png').convert_alpha()
+pacman_image = pygame.transform.scale(pacman_image, (GRID_SIZE, GRID_SIZE))
+ghost_image = pygame.image.load('ghost.png').convert_alpha()
+ghost_image = pygame.transform.scale(ghost_image, (GRID_SIZE, GRID_SIZE))
+dot_image = pygame.image.load('dot.png').convert_alpha()
+dot_image = pygame.transform.scale(dot_image, (GRID_SIZE // 2, GRID_SIZE // 2))
+
+# Pac-Man class
+class Pacman(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pacman_image
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+    def update(self):
+        pass
+
+# Ghost class
+class Ghost(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = ghost_image
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+    def update(self):
+        pass
+
+# Dot class
+class Dot(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = dot_image
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+    def update(self):
+        pass
+
+# Create Pac-Man
+pacman = Pacman(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+
+# Create Ghosts
+ghost1 = Ghost(SCREEN_WIDTH // 2 - GRID_SIZE, SCREEN_HEIGHT // 2 - GRID_SIZE)
+ghost2 = Ghost(SCREEN_WIDTH // 2 + GRID_SIZE, SCREEN_HEIGHT // 2 - GRID_SIZE)
+ghost3 = Ghost(SCREEN_WIDTH // 2 - GRID_SIZE, SCREEN_HEIGHT // 2 + GRID_SIZE)
+ghost4 = Ghost(SCREEN_WIDTH // 2 + GRID_SIZE, SCREEN_HEIGHT // 2 + GRID_SIZE)
+
+# Create Dots
+dots = pygame.sprite.Group()
+for x in range(0, SCREEN_WIDTH, GRID_SIZE):
+    for y in range(0, SCREEN_HEIGHT, GRID_SIZE):
+        dots.add(Dot(x + GRID_SIZE // 4, y + GRID_SIZE // 4))
+
+# Main game loop
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    # Update Pac-Man
+    pacman.update()
+
+    # Update Ghosts
+    ghost1.update()
+    ghost2.update()
+    ghost3.update()
+    ghost4.update()
+
+    # Check for collisions with dots
+    dot_collisions = pygame.sprite.spritecollide(pacman, dots, True)
+    for dot in dot_collisions:
+        pass  # Add dot collection logic here
+
+    # Update screen
+    screen.fill(BLACK)
+    dots.draw(screen)
+    screen.blit
