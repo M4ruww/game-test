@@ -10,6 +10,7 @@ GHOST_SPEED = 1  # Ghosts movement speed
 BLACK = (0, 0, 1)
 YELLOW = (255, 255, 0)
 
+
 # Initialize Pygame
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
