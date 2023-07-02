@@ -8,7 +8,7 @@ GRID_SIZE = 16  # Grid size for Pac-Man and ghosts
 PACMAN_SPEED = 2  # Pac-Man movement speed
 GHOST_SPEED = 1  # Ghosts movement speed
 BLACK = (0, 0, 1)
-YELLOW = (255, 255, 0)
+YELLOW = (255, 255, 2)
 
 
 # Initialize Pygame
