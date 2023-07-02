@@ -75,7 +75,7 @@ for x in range(0, SCREEN_WIDTH, GRID_SIZE):
     for y in range(0, SCREEN_HEIGHT, GRID_SIZE):
         dots.add(Dot(x + GRID_SIZE // 4, y + GRID_SIZE // 4))
 
-# Main game loop
+# Main game loopv 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
